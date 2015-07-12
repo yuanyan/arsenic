@@ -1,8 +1,13 @@
-var React = require('react');
+
+import React, {PropTypes} from "react";
 
 var Arsenic = React.createClass({
+  propTypes: {
+    width: PropTypes.number,
+    height: PropTypes.number
+  },
 
-  getInitialState() {
+  getDefaultProps() {
     return {
       directionX: -1, // -1:left;0:random;1:right
       directionY: -1, // -1:up;0:random;1:down
@@ -26,7 +31,7 @@ var Arsenic = React.createClass({
     var canvas = React.findDOMNode(this);
     if (canvas.tagName != 'CANVAS') return;
 
-    var options = this.state;
+    var options = this.props;
 
     var ctx = this._ctx = canvas.getContext('2d', {
       alpha: !options.backgroundColor
@@ -173,7 +178,7 @@ var Arsenic = React.createClass({
   },
 
   render() {
-    return <canvas /> ;
+    return <canvas {...this.props} />
   }
 
 });

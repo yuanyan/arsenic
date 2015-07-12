@@ -1,12 +1,21 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"arsenic":[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var Arsenic = React.createClass({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var Arsenic = _react2['default'].createClass({
   displayName: 'Arsenic',
 
-  getInitialState: function getInitialState() {
+  propTypes: {
+    width: _react.PropTypes.number,
+    height: _react.PropTypes.number
+  },
+
+  getDefaultProps: function getDefaultProps() {
     return {
       directionX: -1, // -1:left;0:random;1:right
       directionY: -1, // -1:up;0:random;1:down
@@ -29,10 +38,10 @@ var Arsenic = React.createClass({
   componentDidMount: function componentDidMount() {
     var _this = this;
 
-    var canvas = React.findDOMNode(this);
+    var canvas = _react2['default'].findDOMNode(this);
     if (canvas.tagName != 'CANVAS') return;
 
-    var options = this.state;
+    var options = this.props;
 
     var ctx = this._ctx = canvas.getContext('2d', {
       alpha: !options.backgroundColor
@@ -172,7 +181,7 @@ var Arsenic = React.createClass({
   },
 
   render: function render() {
-    return React.createElement('canvas', null);
+    return _react2['default'].createElement('canvas', this.props);
   }
 
 });

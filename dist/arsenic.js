@@ -1,13 +1,24 @@
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Arsenic=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
-"use strict";
+'use strict';
 
-var React = typeof window !== "undefined" ? window.React : typeof global !== "undefined" ? global.React : null;
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
 
-var Arsenic = React.createClass({
-  displayName: "Arsenic",
+var _react = typeof window !== 'undefined' ? window.React : typeof global !== 'undefined' ? global.React : null;
 
-  getInitialState: function getInitialState() {
+var _react2 = _interopRequireDefault(_react);
+
+var Arsenic = _react2['default'].createClass({
+  displayName: 'Arsenic',
+
+  propTypes: {
+    width: _react.PropTypes.number,
+    height: _react.PropTypes.number
+  },
+
+  getDefaultProps: function getDefaultProps() {
     return {
       directionX: -1, // -1:left;0:random;1:right
       directionY: -1, // -1:up;0:random;1:down
@@ -21,7 +32,7 @@ var Arsenic = React.createClass({
       dotRadius: [1, 5], // px value or [minR,maxR]
       //backgroundColor: 'rgba(9,9,9,1)',   // default transparent; use alpha value for motion blur and ghosting
       //dotColor: 'rgba(99,99,99,.5)',
-      linkColor: "rgba(99,99,99,.8)",
+      linkColor: 'rgba(99,99,99,.8)',
       linkDistance: 50,
       linkWidth: 2
     };
@@ -30,12 +41,12 @@ var Arsenic = React.createClass({
   componentDidMount: function componentDidMount() {
     var _this = this;
 
-    var canvas = React.findDOMNode(this);
-    if (canvas.tagName != "CANVAS") return;
+    var canvas = _react2['default'].findDOMNode(this);
+    if (canvas.tagName != 'CANVAS') return;
 
-    var options = this.state;
+    var options = this.props;
 
-    var ctx = this._ctx = canvas.getContext("2d", {
+    var ctx = this._ctx = canvas.getContext('2d', {
       alpha: !options.backgroundColor
     });
     var tilt = {
@@ -165,15 +176,15 @@ var Arsenic = React.createClass({
       ctx.fillStyle = options.dotColor;
     };
 
-    window.addEventListener("resize", onResize, false);
-    document.addEventListener("mousemove", onMousemove, false);
-    window.addEventListener("deviceorientation", onOrientation, false);
+    window.addEventListener('resize', onResize, false);
+    document.addEventListener('mousemove', onMousemove, false);
+    window.addEventListener('deviceorientation', onOrientation, false);
     onResize();
     update();
   },
 
   render: function render() {
-    return React.createElement("canvas", null);
+    return _react2['default'].createElement('canvas', this.props);
   }
 
 });
