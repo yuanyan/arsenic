@@ -1,6 +1,6 @@
 {
   "name": "arsenic",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "description": "Background component with React.js",
   "main": "Arsenic.js",
   "author": "Yuanyan Cao",
